@@ -2,6 +2,7 @@ import * as THREE from "./lib/three.module.js";
 import { globalObjectCategory } from "./obj_cfg.js";
 import { saveWorldList } from "./save.js";
 import { intersect } from "./util.js";
+import { actionHistoryManager } from "./action_history_manager.js";
 
 function Annotation(sceneMeta, world, frameInfo) {
   this.world = world;
@@ -408,6 +409,12 @@ function Annotation(sceneMeta, world, frameInfo) {
     console.log(this.boxes)
 
     this.boxes.push(mesh);
+
+    actionHistoryManager.save({
+      type   : 'ADD_BOX',
+      payload: mesh
+  });
+
     this.sort_boxes();
 
     this.webglGroup.add(mesh);
