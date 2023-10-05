@@ -451,6 +451,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
     let self = this;
     switch (event.currentTarget.id) {
       case "label-del":
+        console.log('yeah you\'re right')
         self.remove_selected_box();
         self.header.updateModifiedStatus();
         break;
