@@ -28,15 +28,22 @@ export class ActionHistoryManager {
 
     constructor() {
         document.addEventListener('keydown', (e) => {
+            console.log('event listener for action manager called')
             if (e.code === this.#options.code && e.ctrlKey) {
                 if (e.shiftKey) {
+                    console.log('event listner redo called')
+                    console.log('before redo', this.#stack)
                     const action = this.redo();
-
+                    console.log('action', action)
                     action && this.#options.onRedo?.(action);
+                    console.log('after redo', this.#stack)
                 } else {
+                    console.log('event listener undo called')
+                    console.log('before undo', this.#stack)
                     const action = this.undo();
 
                     action && this.#options.onUndo?.(action);
+                    console.log('after undo', this.#stack)
                 }
             }
         });

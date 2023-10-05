@@ -2910,7 +2910,16 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
     onRedo: (action) => {
         switch(action.type) {
             case 'ADD_BOX': {
-                this.add_box(action.payload);
+                console.log('on redo called')
+                console.log('action.payload, ', action.payload)
+                this.add_box(
+                  action.payload.position,
+                  action.payload.scale,
+                  action.payload.rotation,      
+                  action.payload.obj_type,
+                  action.payload.obj_track_id,
+                  action.payload.obj_attr,
+                  );
                 break;
             }
             case 'CHANGE_SIZE_BOX': {
