@@ -2889,10 +2889,20 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
                 break;
             }
             case 'CHANGE_SIZE_BOX': {
+                console.log('action.payload in undo', action.payload)
                 if(!this.selected_box || this.selected_box.uuid !== action.payload.box.uuid) {
                     this.floatLabelManager.select_box(action.payload.box.obj_local_id);
                 }
 
+                actionHistoryManager.pushRedo({
+                  type   : 'CHANGE_SIZE_BOX',
+                  payload: {
+                      box     : this.selected_box,
+                      position: { ...this.selected_box.position },
+                      scale   : { ...this.selected_box.scale }
+                  }
+                });
+                
                 this.selected_box.position.x = action.payload.position.x;
                 this.selected_box.position.y = action.payload.position.y;
                 this.selected_box.position.z = action.payload.position.z;
@@ -2923,6 +2933,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
                 break;
             }
             case 'CHANGE_SIZE_BOX': {
+                console.log('action.payload in redo', action.payload)
                 if(!this.selected_box || this.selected_box.uuid !== action.payload.box.uuid) {
                     this.floatLabelManager.select_box(action.payload.box.obj_local_id);;
                 }

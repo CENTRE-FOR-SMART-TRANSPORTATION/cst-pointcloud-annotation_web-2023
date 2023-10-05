@@ -83,7 +83,7 @@ export class ActionHistoryManager {
     undo() {
         const action = this.#stack.undo.pop();
 
-        action && this.#stack.redo.push(action);
+        action && action.type != "CHANGE_SIZE_BOX" && this.#stack.redo.push(action);
 
         return action;
     }
@@ -92,6 +92,9 @@ export class ActionHistoryManager {
         return this.#stack.redo.pop();
     }
 
+    pushRedo(action) {
+        this.#stack.redo.push(action);
+    }
 }
 
 let actionHistoryManager = new ActionHistoryManager();
