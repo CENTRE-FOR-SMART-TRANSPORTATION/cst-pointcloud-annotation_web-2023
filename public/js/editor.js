@@ -449,6 +449,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
 
   this.handleFastToolEvent = function (event) {
     let self = this;
+    console.log('valval', event.target.id)
     switch (event.currentTarget.id) {
       case "label-del":
         console.log('yeah you\'re right')
@@ -538,6 +539,9 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       case "object-category-selector":
         this.object_category_changed(event);
         break;
+      case "object-severity-selector":
+        this.object_severity_changed(event);
+        break
       case "object-track-id-editor":
         this.object_track_id_changed(event);
         break;
@@ -1319,6 +1323,13 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
     );
   };
 
+  this.object_severity_changed = function(event) {
+    if (this.selected_box) {
+      console.log('valval', event.target.value)
+      this.selected_box.severity = event.target.value
+    }
+  }
+
   this.object_category_changed = function (event) {
     if (this.selected_box) {
       let category = event.currentTarget.value;
@@ -1344,21 +1355,18 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
 
       const mode = localStorage.getItem('mode')
       if (mode == "urban") {
-        let severity_html = '<select title="severity"  id="object-severity-selector">';
+        let severity_html = '';
         const val = event.target.value
         const obj_type_map = globalObjectCategory.obj_type_map;
         for (let v of obj_type_map[val]["severity"]) {
           severity_html += `<option value=${v}>${v}</option>`;
         }
-        severity_html += '</select>'
   
         this.editorUi.querySelector(
-          "#floating-things #object-severity-row"
+          "#floating-things #object-severity-selector"
         ).innerHTML = severity_html;
-      } else {
-        this.editorUi.querySelector(
-          "#floating-things #object-severity-row"
-        ).innerHTML = ''; 
+
+        this.selected_box.severity = obj_type_map[val]["severity"][0]
       }
     }
   };
@@ -1929,21 +1937,17 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
 
     const mode = localStorage.getItem('mode')
     if (mode == "urban") {
-      let severity_html = '<select title="severity"  id="object-severity-selector">';
+      let severity_html = '';
       const val = this.selected_box.obj_type
       const obj_type_map = globalObjectCategory.obj_type_map;
       for (let v of obj_type_map[val]["severity"]) {
         severity_html += `<option value=${v}>${v}</option>`;
       }
-      severity_html += '</select>'
 
+      this.selected_box.severity = obj_type_map[val]["severity"][0]
       this.editorUi.querySelector(
-        "#floating-things #object-severity-row"
+        "#floating-things #object-severity-selector"
       ).innerHTML = severity_html;
-    } else {
-      this.editorUi.querySelector(
-        "#floating-things #object-severity-row"
-      ).innerHTML = ''; 
     }
     this.render();
   };
@@ -2766,6 +2770,13 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
     const otherLabels = await globalObjectCategory.get_labels_from_backend(
       otherMode
     );
+
+    if (mode == 'urban') {
+      document.getElementById("object-severity-selector").style.display = 'block'
+    } else {
+      document.getElementById("object-severity-selector").style.display = 'none'
+    }
+
     console.log("loaded labels");
     console.log(labels);
     globalObjectCategory.set_labels(labels);
