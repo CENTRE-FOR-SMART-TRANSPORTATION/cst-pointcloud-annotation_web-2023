@@ -1341,6 +1341,25 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
         category: this.selected_box.obj_type,
         id: this.selected_box.obj_track_id,
       });
+
+      const mode = localStorage.getItem('mode')
+      if (mode == "urban") {
+        let severity_html = '<select title="severity"  id="object-severity-selector">';
+        const val = event.target.value
+        const obj_type_map = globalObjectCategory.obj_type_map;
+        for (let v of obj_type_map[val]["severity"]) {
+          severity_html += `<option value=${v}>${v}</option>`;
+        }
+        severity_html += '</select>'
+  
+        this.editorUi.querySelector(
+          "#floating-things #object-severity-row"
+        ).innerHTML = severity_html;
+      } else {
+        this.editorUi.querySelector(
+          "#floating-things #object-severity-row"
+        ).innerHTML = ''; 
+      }
     }
   };
 
@@ -1908,6 +1927,24 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       }
     }
 
+    const mode = localStorage.getItem('mode')
+    if (mode == "urban") {
+      let severity_html = '<select title="severity"  id="object-severity-selector">';
+      const val = this.selected_box.obj_type
+      const obj_type_map = globalObjectCategory.obj_type_map;
+      for (let v of obj_type_map[val]["severity"]) {
+        severity_html += `<option value=${v}>${v}</option>`;
+      }
+      severity_html += '</select>'
+
+      this.editorUi.querySelector(
+        "#floating-things #object-severity-row"
+      ).innerHTML = severity_html;
+    } else {
+      this.editorUi.querySelector(
+        "#floating-things #object-severity-row"
+      ).innerHTML = ''; 
+    }
     this.render();
   };
 
@@ -2788,6 +2825,8 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
     }
 
     // obj type selector
+
+    // this is where the select options for object category selector are added
     var options = "";
     for (var o in obj_type_map) {
       options +=
@@ -2798,6 +2837,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       "#floating-things #object-category-selector"
     ).innerHTML = options;
     //this.editorUi.querySelector("#batch-editor-tools-wrapper #object-category-selector").innerHTML = options;
+  
 
     // submenu of new
     var items = "";

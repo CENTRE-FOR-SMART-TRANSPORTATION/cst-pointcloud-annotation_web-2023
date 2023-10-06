@@ -1,5 +1,17 @@
 {
-  "Sign": { "color": "#00f900", "size": [1.7, 1.7, 4] },
-  "Vegetation": { "color": "#ff2600", "size": [2, 2, 2] },
-  "Traffic Lights": { "color": "#ff26ff", "size": [2, 4, 4] }
+  "Sign": {
+    "color": "#00f900",
+    "size": [1.7, 1.7, 4],
+    "severity": ["tilted", "bent", "straight"]
+  },
+  "Vegetation": {
+    "color": "#ff2600",
+    "size": [2, 2, 2],
+    "severity": ["low", "medium", "high"]
+  },
+  "Traffic Lights": {
+    "color": "#ff26ff",
+    "size": [2, 4, 4],
+    "severity": ["low", "medium", "high"]
+  }
 }
