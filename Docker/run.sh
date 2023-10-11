@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cd /root/SUSTechPOINTS && python3 ./main.py
+cd /root/cst-pointcloud-annotation_web-2023  && python3 main.py

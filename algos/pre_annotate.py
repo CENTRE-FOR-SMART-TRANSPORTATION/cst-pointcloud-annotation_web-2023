@@ -16,7 +16,7 @@ util.config_gpu()
 
 RESAMPLE_NUM = 10
 
-model_file = "./algos/models/deep_annotation_inference.h5"
+model_file = os.path.abspath("algos/models/deep_annotation_inference.h5")
 
 rotation_model = tf.keras.models.load_model(model_file)
 rotation_model.summary()
