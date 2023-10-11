@@ -117,7 +117,8 @@ function Annotation(sceneMeta, world, frameInfo) {
       obj_type: box.obj_type,
       obj_id: String(box.obj_track_id),
       obj_attr: box.obj_attr,
-      creation_mode: box.creation_mode
+      creation_mode: box.creation_mode,
+      severity: box.severity
       //vertices: vertices,
     };
     return ann;

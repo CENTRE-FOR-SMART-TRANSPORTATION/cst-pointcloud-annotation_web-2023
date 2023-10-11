@@ -1,8 +1,17 @@
 {
-  "Car": {
-    "color": "#86af49",
-    "size": [4.5, 1.8, 1.5],
-    "attr": ["door open", "trunk open"]
+  "Sign": {
+    "color": "#00f900",
+    "size": [1.7, 1.7, 4],
+    "severity": ["tilted", "bent", "straight"]
   },
-  "TrafficBarrier": { "color": "#ff0000", "size": [1.5, 0.3, 1.2] }
+  "Vegetation": {
+    "color": "#ff2600",
+    "size": [2, 2, 2],
+    "severity": ["low", "medium", "high"]
+  },
+  "Traffic Lights": {
+    "color": "#ff26ff",
+    "size": [2, 4, 4],
+    "severity": ["low", "medium", "high"]
+  }
 }

@@ -192,6 +192,11 @@ class FastToolBox {
       this.eventHandler(event);
     };
 
+    this.ui.querySelector("#object-severity-selector").onchange = (event) => {
+      this.eventHandler(event);
+    };
+
+
     this.ui.querySelector("#object-track-id-editor").onchange = (event) =>
       this.eventHandler(event);
     this.ui

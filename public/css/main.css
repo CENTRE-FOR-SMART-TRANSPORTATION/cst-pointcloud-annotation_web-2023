@@ -131,7 +131,7 @@ canvas {
 #object-category-selector, 
 #object-track-id-editor, #attr-input, #scene-selector, 
 #frame-selector, #object-selector, 
-#camera-selector, #obj-ids-of-scene
+#camera-selector, #obj-ids-of-scene, #object-severity-selector
 {
 	background-color: inherit;
 	color: inherit;
