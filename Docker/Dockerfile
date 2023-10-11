@@ -12,6 +12,5 @@ RUN cd cst-pointcloud-annotation_web-2023 && \
         wget https://github.com/naurril/SUSTechPOINTS/releases/download/0.1/deep_annotation_inference.h5 -P algos/models && \
         pip install -r requirement.txt && pip install tensorflow
 
-ENTRYPOINT ["python3", "/root/cst-pointcloud-annotation_web-2023/main.py"]
-
-EXPOSE 8081
+WORKDIR /root/cst-pointcloud-annotation_web-2023/
+ENTRYPOINT ["python3", "main.py"]
