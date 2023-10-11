@@ -19,4 +19,6 @@ docker run -it -d --name cst-annotation -p 8081:8081 -v ${DATA_PATH}:/root/cst-p
 
 ```
 
-DATA_PATH should be the path to your data folder.
+DATA_PATH should be the path to your data folder. 
+When using git bash on Windows, you'll need an extra ```/``` at the start of your path. 
+So ```//c/<path>``` instead of ```/c/<path>```
