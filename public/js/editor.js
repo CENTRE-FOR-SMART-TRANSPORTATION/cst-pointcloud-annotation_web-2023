@@ -119,7 +119,10 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
 
       if (data.centre == null) {
         alert('No location found for this point cloud')
+        return
       }
+
+      window.open(data.link)
     });
 
     const labelModeSelect = document.getElementById("label-mode");
