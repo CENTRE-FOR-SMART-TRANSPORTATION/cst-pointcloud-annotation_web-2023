@@ -105,6 +105,13 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       window.location.href = "/create_labels";
     });
 
+    // adding an onclick listener to the button on top
+    const googleMapsButton = document.getElementById("google-maps-button");
+    googleMapsButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      alert('No location found for current map')
+    });
+
     const labelModeSelect = document.getElementById("label-mode");
     // just ui nice to have
     let modeVal = localStorage.getItem("mode");

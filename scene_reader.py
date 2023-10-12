@@ -57,10 +57,17 @@ def get_one_scene(s):
             pcd_name = os.path.join(scene_dir, "lidar", f'{filename_cut}_converted.pcd')
             
             if not os.path.isfile(pcd_name):
-                prepare_pcd.convert_for_server(file_path)
+                global_centre = prepare_pcd.convert_for_server(file_path)
                 json_name = os.path.join(scene_dir, "label", f'{filename_cut}_converted.json')
+                folder_name = os.path.join(scene_dir, "centres")
+                if not os.path.exists(folder_name):
+                    os.makedirs(folder_name)
+                file_name = os.path.join(folder_name, f'{filename_cut}_centre.json')
                 with open(json_name,'w') as f:
                     json.dump([], f)
+                print(file_name)
+                with open(file_name,'w') as f:
+                    json.dump(global_centre, f)
 
     frames = os.listdir(os.path.join(scene_dir, "lidar"))
     frames.sort()
