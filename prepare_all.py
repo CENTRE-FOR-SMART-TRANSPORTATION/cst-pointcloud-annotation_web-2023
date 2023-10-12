@@ -27,7 +27,7 @@ for folder in data_dirs:
                 folder_name = os.path.join(scene_dir, "centres")
                 if not os.path.exists(folder_name):
                     os.makedirs(folder_name)
-                file_name = os.path.join(folder_name, f'{filename_cut}_centre.json')
+                file_name = os.path.join(folder_name, f'{filename_cut}_converted_centre.json')
                 with open(json_name,'w') as f:
                     json.dump([], f)
                 print(file_name)
