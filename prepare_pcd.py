@@ -109,6 +109,7 @@ def write_pcd_to_lidar(las: laspy.LasData, filename: str, las_filename: str) -> 
     pcd = o3d.geometry.PointCloud()
     las_xyz = las.xyz
     print('The global coordinates of the centre are: ', las_xyz[las_xyz.shape[0] // 2, :])
+    global_centre = [i for i in las_xyz[las_xyz.shape[0] // 2, :].tolist()]
     if not GLOBAL:
         # road_pts = get_trajectory(las) # doesn't work on a custom cut small road
         las_xyz -= las_xyz[las_xyz.shape[0] // 2, :] # Center point cloud
@@ -145,7 +146,7 @@ def write_pcd_to_lidar(las: laspy.LasData, filename: str, las_filename: str) -> 
 
     o3d.io.write_point_cloud(output_path, pcd, print_progress=True)
     print(f"\nDone!\nFile was saved to {output_path}.")
-    return
+    return global_centre
 
 
 def open_las(args: argparse.Namespace):
@@ -195,8 +196,7 @@ def open_las_file(filename: str):
 
 def convert_for_server(filename: str):
     las, las_filename_cut = open_las_file(filename)
-    write_pcd_to_lidar(las, las_filename_cut, filename)
-    return
+    return write_pcd_to_lidar(las, las_filename_cut, filename)
 
 # We need to get the road point that represents the center of the original point cloud
 def get_trajectory(las: laspy.LasData) -> np.ndarray:
