@@ -7,7 +7,7 @@ temp
 image_temp
 tools/pypcd
 temp*/
-.DS_Store
+**/.DS_Store
 converted/
 scripts/
 todo

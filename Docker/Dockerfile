@@ -13,4 +13,5 @@ RUN cd cst-pointcloud-annotation_web-2023 && \
         pip install -r requirement.txt && pip install tensorflow
 
 WORKDIR /root/cst-pointcloud-annotation_web-2023/
-ENTRYPOINT ["python3", "main.py"]
+
+ENTRYPOINT ["sh", "-c", "git pull && python3 main.py"]

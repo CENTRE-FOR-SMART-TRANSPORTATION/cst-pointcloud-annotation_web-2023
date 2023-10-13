@@ -15,7 +15,7 @@ cd Docker
 
 docker build --no-cache --progress=plain -t cst-pointcloud-annotation_web-2023 .
 
-docker run -it -d --name cst-annotation -p 8081:8081 -v ${DATA_PATH}:/root/cst-pointcloud-annotation_web-2023/data cst-pointcloud-annotation_web-2023
+docker run -it -d --name cst-annotation -p 8081:8081 -v ${DATA_PATH}:/root/cst-pointcloud-annotation_web-2023/data -v ${RURAL_PATH}:/root/cst-pointcloud-annotation_web-2023/rural_labels.json -v ${URBAN_PATH}:/root/cst-pointcloud-annotation_web-2023/urban_labels.json cst-pointcloud-annotation_web-2023
 
 ```
 
