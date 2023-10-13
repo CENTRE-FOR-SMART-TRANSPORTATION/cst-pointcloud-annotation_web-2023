@@ -14,4 +14,4 @@ RUN cd cst-pointcloud-annotation_web-2023 && \
 
 WORKDIR /root/cst-pointcloud-annotation_web-2023/
 
-ENTRYPOINT ["sh", "-c", "git pull && python3 main.py"]
+ENTRYPOINT ["sh", "-c", "git pull && pip install -r requirement.txt && python3 main.py"]
