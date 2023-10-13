@@ -105,6 +105,26 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       window.location.href = "/create_labels";
     });
 
+    // adding an onclick listener to the button on top
+    const googleMapsButton = document.getElementById("google-maps-button");
+    googleMapsButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      
+      const curScene = document.getElementById('scene-selector')?.value
+      const curFrame = document.getElementById('frame-selector')?.value
+
+      const res = await fetch(`/scenecentre?scene=${curScene}&frame=${curFrame}`)
+      const data = await res.json()
+      console.log(data.centre)
+
+      if (data.centre == null) {
+        alert('No location found for this point cloud')
+        return
+      }
+
+      window.open(data.link)
+    });
+
     const labelModeSelect = document.getElementById("label-mode");
     // just ui nice to have
     let modeVal = localStorage.getItem("mode");
