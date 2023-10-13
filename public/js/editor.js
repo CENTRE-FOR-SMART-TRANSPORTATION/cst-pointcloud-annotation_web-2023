@@ -118,7 +118,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       console.log(data.centre)
 
       if (data.centre == null) {
-        alert('Docker setup was succesul')
+        alert('No location found for this point cloud')
         return
       }
 
