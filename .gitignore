@@ -11,3 +11,5 @@ temp*/
 converted/
 scripts/
 todo
+rural_labels.json
+urban_labels.json
