@@ -4,10 +4,57 @@ import json
 import prepare_pcd
 import utm
 import numpy as np
+import shutil
+import glob
+import datetime
+import json
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.join(this_dir, "data")
 
+def cleanup_structure():
+    ds_store = glob.glob(os.path.join(root_dir, "**/.DS_Store"), recursive=True)
+
+    for f in ds_store:
+        if os.path.exists(f):
+            os.remove(f)
+    
+    unused_folder = os.path.join(root_dir, "unused")
+    if not os.path.exists(unused_folder):
+        os.makedirs(unused_folder)
+
+    subfolders = os.listdir(root_dir)
+    
+    for folder in subfolders:
+        if folder == "unused":
+            continue
+        folder_path = os.path.join(root_dir, folder)
+        lidar_dir = os.path.join(folder_path, "lidar")
+        las_dir = os.path.join(folder_path, "las_files")
+        label_dir = os.path.join(folder_path, "label")
+
+        if not os.path.exists(lidar_dir) and not os.path.exists(las_dir):
+            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+            shutil.move(folder_path, os.path.join(unused_folder, f'{folder}_{suffix}'))
+            continue
+        
+        if len(os.listdir(lidar_dir)) == 0:
+            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+            shutil.move(folder_path, os.path.join(unused_folder, f'{folder}_{suffix}'))
+            continue
+        
+        if not os.path.exists(label_dir):
+            os.makedirs(label_dir)
+        
+        for f in os.listdir(lidar_dir):
+            cut_name, _ = os.path.splitext(f)
+            json_name = os.path.join(label_dir, f'{cut_name}.json')
+
+            if not os.path.exists(json_name):
+                with open(json_name,'w') as f:
+                    json.dump([], f)
+
+    return
 
 def get_all_scenes():
     all_scenes = get_scene_names()
@@ -26,7 +73,7 @@ def get_all_scene_desc():
 def get_scene_names():
     scenes = os.listdir(root_dir)
     scenes = filter(lambda s: not os.path.exists(
-        os.path.join(root_dir, s, "disable")), scenes)
+        os.path.join(root_dir, s, "disable") and s != "unused"), scenes)
     scenes = list(scenes)
     scenes.sort()
     return scenes

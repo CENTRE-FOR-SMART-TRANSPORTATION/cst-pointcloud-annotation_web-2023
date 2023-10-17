@@ -28,8 +28,9 @@ for folder in data_dirs:
                 if not os.path.exists(folder_name):
                     os.makedirs(folder_name)
                 file_name = os.path.join(folder_name, f'{filename_cut}_converted_centre.json')
-                with open(json_name,'w') as f:
-                    json.dump([], f)
+                if not os.path.exists(file_name):
+                    with open(json_name,'w') as f:
+                        json.dump([], f)
                 print(file_name)
                 with open(file_name,'w') as f:
                     json.dump(global_centre, f)
