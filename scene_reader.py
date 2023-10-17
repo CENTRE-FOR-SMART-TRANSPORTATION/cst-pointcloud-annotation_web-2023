@@ -72,8 +72,8 @@ def get_all_scene_desc():
 
 def get_scene_names():
     scenes = os.listdir(root_dir)
-    scenes = filter(lambda s: not os.path.exists(
-        os.path.join(root_dir, s, "disable") and s != "unused"), scenes)
+    scenes = filter(lambda s: (not os.path.exists(
+        os.path.join(root_dir, s, "disable"))) and s != "unused", scenes)
     scenes = list(scenes)
     scenes.sort()
     return scenes
