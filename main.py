@@ -363,9 +363,8 @@ config = {
   }
 }
 
-
 if __name__ == '__main__':
-    # cherrypy.quickstart(Root(), '/', config="server.conf")
+    scene_reader.cleanup_structure()
     cherrypy.quickstart(Root(), '/', config=config)
 else:
     # application = cherrypy.Application(Root(), '/', config="server.conf")
