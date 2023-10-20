@@ -252,7 +252,7 @@ def get_one_scene(s):
     return scene
 
 
-def get_scene_centre(scene, frame):
+def get_scene_centre(scene, frame, zone):
     centre_filename = os.path.join(
         root_dir, scene, 'centres', f'{frame}_centre.json')
     
@@ -266,7 +266,7 @@ def get_scene_centre(scene, frame):
         centre = json.load(f)
 
     # can change it later to get from front end, in case location isn't correct
-    utm_zone = 12
+    utm_zone = int(zone)
 
     lat, lon = utm.to_latlon(centre[0], centre[1], utm_zone, 'U')
 
