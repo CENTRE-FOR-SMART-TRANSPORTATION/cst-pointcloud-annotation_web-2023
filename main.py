@@ -272,8 +272,8 @@ class Root(object):
 
     @cherrypy.expose    
     @cherrypy.tools.json_out()
-    def scenecentre(self, scene, frame):
-      return scene_reader.get_scene_centre(scene, frame)
+    def scenecentre(self, scene, frame, zone):
+      return scene_reader.get_scene_centre(scene, frame, zone)
 
     @cherrypy.expose    
     @cherrypy.tools.json_out()

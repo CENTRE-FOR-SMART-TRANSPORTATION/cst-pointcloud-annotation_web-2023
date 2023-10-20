@@ -112,8 +112,14 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       
       const curScene = document.getElementById('scene-selector')?.value
       const curFrame = document.getElementById('frame-selector')?.value
+      const zone = parseInt(document.getElementById('zone-input').value)
 
-      const res = await fetch(`/scenecentre?scene=${curScene}&frame=${curFrame}`)
+      if (!(zone == 11 || zone == 12)) {
+        alert("Please enter either zone 11 or 12")
+        return
+      }
+
+      const res = await fetch(`/scenecentre?scene=${curScene}&frame=${curFrame}&zone=${zone}`)
       const data = await res.json()
       console.log(data.centre)
 
