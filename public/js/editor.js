@@ -2069,10 +2069,14 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
 
   this.add_box_on_mouse_pos = function (obj_type) {
     // todo: move to this.data.world
+    console.log("add box on mouse pos called")
     let globalP = this.mouse.get_mouse_location_in_world();
 
     // trans pos to world local pos
     let pos = this.data.world.scenePosToLidar(globalP);
+    pos.x = this.viewManager.mainView.orbit.target.x
+    pos.y = this.viewManager.mainView.orbit.target.y
+    pos.z = this.viewManager.mainView.orbit.target.z
 
     var rotation = new THREE.Euler(
       0,
@@ -2089,7 +2093,7 @@ function Editor(editorUi, wrapperUi, editorCfg, data, name = "editor") {
       z: obj_cfg.size[2],
     };
 
-    pos.z = -1.8 + scale.z / 2; // -1.8 is height of lidar
+    // pos.z = -1.8 + scale.z / 2; // -1.8 is height of lidar
 
     let id = objIdManager.generateNewUniqueId();
 

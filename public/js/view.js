@@ -120,9 +120,6 @@ function ViewManager(
       1,
       800
     );
-    camera.position.x = -1000;
-    camera.position.z = -1000;
-    camera.position.y = -1000;
     camera.up.set(0, 0, 1);
     camera.lookAt(0, 0, 0);
     view.blind_camera = camera;
@@ -205,7 +202,7 @@ function ViewManager(
         this.orbit.target.y,
         this.orbit.target.z
       );
-
+      
       if (this.active) {
         //this.switch_camera(false);
         this.renderWithCamera(this.camera);
