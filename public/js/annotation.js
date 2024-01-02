@@ -398,7 +398,6 @@ function Annotation(sceneMeta, world, frameInfo) {
     // this is where it adds the box to this.boxes
     // we can set properties on the box in createCuboid
     console.log("add box called in annotation")
-    console.log("pos", pos)
     let mesh = this.createCuboid(
       pos,
       scale,
