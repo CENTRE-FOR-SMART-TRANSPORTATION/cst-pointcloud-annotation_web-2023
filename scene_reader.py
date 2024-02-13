@@ -50,7 +50,7 @@ def cleanup_structure():
             cut_name, _ = os.path.splitext(f)
             json_name = os.path.join(label_dir, f'{cut_name}.json')
 
-            if not os.path.exists(json_name):
+            if not os.path.isfile(json_name):
                 with open(json_name,'w') as f:
                     json.dump([], f)
 
@@ -121,8 +121,9 @@ def get_one_scene(s):
                     os.makedirs(folder_name)
                 file_name = os.path.join(
                     folder_name, f'{filename_cut}_converted_centre.json')
-                with open(json_name, 'w') as f:
-                    json.dump([], f)
+                if not os.path.isfile(json_name):
+                    with open(json_name, 'w') as f:
+                        json.dump([], f)
                 print(file_name)
                 with open(file_name, 'w') as f:
                     json.dump(global_centre, f)
