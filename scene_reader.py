@@ -38,7 +38,7 @@ def cleanup_structure():
             shutil.move(folder_path, os.path.join(unused_folder, f'{folder}_{suffix}'))
             continue
         
-        if len(os.listdir(lidar_dir)) == 0:
+        if len(os.listdir(lidar_dir)) == 0 and len(os.listdir(las_dir)) == 0:
             suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
             shutil.move(folder_path, os.path.join(unused_folder, f'{folder}_{suffix}'))
             continue
